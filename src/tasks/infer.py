@@ -64,7 +64,7 @@ class infer_from_trained(object):
         self.net.resize_token_embeddings(len(self.tokenizer))
         if self.cuda:
             self.net.cuda()
-        start_epoch, best_pred, amp_checkpoint = load_state(self.net, None, None, self.args, load_best=False)
+        start_epoch, best_pred, amp_checkpoint = load_state(self.net, None, None, self.args, load_best=True)
         logger.info("Done!")
         
         self.e1_id = self.tokenizer.convert_tokens_to_ids('[E1]')
