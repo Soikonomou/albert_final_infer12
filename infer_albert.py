@@ -97,7 +97,7 @@ def ner_relation(text):
             order = []
             for i in range(0, len(entities)):
                 for j in range(0, len(words)):
-                    if entities[i] == words[i]:
+                    if entities[i] == words[j]:
                         order.append(i)
                         break
             ordered_entities = [x for _, x in sorted(zip(order, entities))]
