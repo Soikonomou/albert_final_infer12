@@ -93,9 +93,17 @@ def ner_relation(text):
             for i in range(0, len(pairs)):
                 if pairs[i] == True:
                     entities.append(n_entities[i])
-            for previous, current in zip(entities, entities[1:]):
-                sent = re.sub(previous, '[E1]{}[/E1]'.format(previous), sent)
-                sent = re.sub(current, '[E2]{}[/E2]'.format(current), sent)
-                result = inferer.infer_sentence(sent, detect_entities=False)
+            words = nltk.word_tokenize(sent)
+            order = []
+            for i in range(0, len(entities)):
+                for j in range(0, len(words)):
+                    if entities[i] == words[i]:
+                        order.append(i)
+                        break
+            ordered_entities = [x for _, x in sorted(zip(order, entities))]
+            for previous, current in zip(ordered_entities, ordered_entities[1:]):
+                sent_new = re.sub(previous, '[E1]{}[/E1]'.format(previous), sent)
+                sent_new = re.sub(current, '[E2]{}[/E2]'.format(current), sent_new)
+                result = inferer.infer_sentence(sent_new, detect_entities=False)
                 results.append([previous, current, result])
     return(results)
