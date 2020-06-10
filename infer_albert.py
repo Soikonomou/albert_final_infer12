@@ -88,7 +88,7 @@ def ner_relation(text):
                 entities.replace('Mrs', '').strip()
         results = []
         for sent in X_test:
-            pairs = [x in output['body'] for x in n_entities]
+            pairs = [x in sent for x in n_entities]
             entities = []
             for i in range(0, len(pairs)):
                 if pairs[i] == True:
