@@ -8,6 +8,7 @@ from nltk.tokenize import TweetTokenizer
 import nltk
 import pandas as pd
 import requests
+import re
 tknzr = TweetTokenizer(strip_handles=True, reduce_len=True)
 '''
 This fine-tunes the BERT model on SemEval task
@@ -82,9 +83,9 @@ def ner_relation(text):
             n_entities.append(output['sentences']['0']['entities_e2e'][i]['URI'])
         for entities in n_entities:
             if 'Mr' in entities:
-                entity.replace('Mr', '').strip()
+                entities.replace('Mr', '').strip()
             elif 'Mrs' in entities:
-                entity.replace('Mrs', '').strip()
+                entities.replace('Mrs', '').strip()
         results = []
         for sent in X_test:
             pairs = [x in output['body'] for x in n_entities]
