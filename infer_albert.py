@@ -38,10 +38,9 @@ args = parser.parse_args()
 
 if args.train == 1:
   net = train_and_fit(args)
-
+inferer = infer_from_trained(args, detect_entities=False)
 def ner_relation(text):
     if args.infer == 1:
-        inferer = infer_from_trained(args, detect_entities=False)
         body = text
         data = {
             "_id": "abc",
