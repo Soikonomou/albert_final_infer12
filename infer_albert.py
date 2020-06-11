@@ -52,7 +52,7 @@ def ner_relation(text):
                 }
             }
         }
-        result = requests.post(url="http://10.142.0.204:4020/entity_extraction", json=data)
+        result = requests.post(url="http://35.229.36.115:4020/entity_extraction", json=data)
         output = result.json()
         n_entities = []
         document = ' '.join(output['body'].split())
