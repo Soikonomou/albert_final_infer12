@@ -95,7 +95,7 @@ class Two_Headed_Loss(nn.Module):
         total_loss = lm_loss + blank_loss
         return total_loss
 
-def load_state(net, optimizer, scheduler, args, load_best=False):
+def load_state(net, optimizer, scheduler, args, load_best=True):
     """ Loads saved model and optimizer states if exists """
     base_path = "./data/"
     amp_checkpoint = None
